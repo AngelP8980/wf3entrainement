@@ -18,9 +18,9 @@ class Database {
     static function getPDOConnection(): PDO 
     {
         // Connexion à la base de données avec PDO
-        $dsn = 'mysql:dbname='.DB_NAME.';host='.DB_HOST.';charset=utf8;port=3306';
-        $user = DB_USER;
-        $password = DB_PASS;
+        $dsn = 'mysql:dbname='.$_ENV['DB_NAME'].';host='.$_ENV['DB_HOST'].';charset=utf8;port=3306';
+        $user = $_ENV['DB_USER'];
+        $password = $_ENV['DB_PASS'];
         $options = [
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, // Mode de gestion des erreurs SQL
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC // Mode de récupération des résultats par défaut : tableaux associatifs

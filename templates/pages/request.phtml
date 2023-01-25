@@ -1,20 +1,20 @@
 <h2>Formulaire de demande au service client</h2>
 <form action="" method="POST">
         <div class="mb-3">
-            <label for="lastname">Prénom*</label>
-            <input class="form-control" type="text" name="lastname" id="lastname" placeholder="Votre prénom" maxlength=255 required>
+            <label for="lastname">Nom*</label>
+            <input class="form-control" type="text" name="lastname" id="lastname" placeholder="Votre nom" maxlength=255 required/>
         </div>
         <div class="mb-3">
-            <label for="firstname">Nom*</label>
-            <input class="form-control" type="text" name="firstname" id="firstname" placeholder="Votre nom" maxlength=255 required>
+            <label for="firstname">Prénom*</label>
+            <input class="form-control" type="text" name="firstname" id="firstname" placeholder="Votre prénom" maxlength=255 required/>
         </div>
         <div class="mb-3">
             <label for="email">E-mail*</label>
-            <input class="form-control" type="email" name="email" id="email" placeholder="Votre e-mail" maxlength=255 required>
+            <input class="form-control" type="email" name="email" id="email" placeholder="Votre e-mail" maxlength=255 required/>
         </div>
         <div class="mb-3">
             <label for="phone">N° de téléphone</label>
-            <input class="form-control" type="tel" name="phone" id="phone" placeholder="Votre n° de téléphone" maxlength=40>
+            <input class="form-control" type="tel" name="phone" id="phone" placeholder="Votre n° de téléphone" maxlength=40/>
         </div>
         <div class="mb-3">
             <label for="demand subject">Sujet de la demande*</label>
@@ -26,13 +26,17 @@
                 <option value="Offres commerciales">Offres commerciales</option>
                 <option value="Sécurité et fraudes">Sécurité et fraudes</option>
             </select>
-        </div>
+        </div> 
         <div class="mb-3">
             <label for="Message">Message*</label>
-            <textarea class="form-control" type="textarea" name="message" id="message" minlength=100 required></textarea>
+            <textarea class="form-control" type="textarea" name="message" id="message" minlength=100 maxlength=1000 required></textarea>
         </div>
 
         <p>Joindre un fichier <input type="file" accept="application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/rtf,application/vnd.oasis.opendocument.text"></p>
 
-        <button class="btn btn-primary">VALIDER</button>
+        <input value="Valider" type="submit" name="submit" class="btn btn-dark"/>
 </form>
+
+<div class="">
+    <?= $flashMessage; ?>
+</div>

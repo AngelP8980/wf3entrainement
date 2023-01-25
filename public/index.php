@@ -15,11 +15,13 @@ require '../vendor/autoload.php';
 // Démarrage de la session
 session_start();
 
-// Inclusion des dépendances
-require '../app/config.php';
+// Inclusion des environnements du .env
+$dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
+$dotenv->load();
 
 // Inclusion du fichier de fonctions
 require '../src/lib/functions.php';
+require '../src/lib/validations.php';
 
 /**
  * Routing : analyse de l'URL pour savoir sur quelle page on se trouve

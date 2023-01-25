@@ -16,13 +16,15 @@ function initSession()
 
 /**
  * Ajoute un message en session
- * @param string $message Le message à ajouter en session
+ * @param ?string $message Le message à ajouter en session
  */
-function addFlash(string $message)
+function addFlash(?string $message)
 {
     initSession();
-
-    $_SESSION['flashbag'] = $message;
+    
+    if ($message != null) {
+        $_SESSION['flashbag'] = $message;
+    }
 }
 
 /**
