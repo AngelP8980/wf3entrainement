@@ -1,0 +1,11 @@
+<div class="text-center pt-3 pb-2">
+    <img src="img/logo.png" alt="Check" width="60">
+    <h2 class="my-4">Bienvenue sur le service client en ligne de votre Blue Bank !</h2>
+    <p>Vous pouvez nous contacter en remplissant le formulaire de demande client ci-dessus.</p>
+</div>
+
+<!-- Affichage du message flash le cas échéant -->
+<?php if ($flashMessage): ?>
+    <div class="alert alert-success text-center pt-3 pb-4"><?=htmlspecialchars($flashMessage);?></div>
+<?php endif; ?>
+
