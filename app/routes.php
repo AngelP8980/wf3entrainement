@@ -41,13 +41,13 @@ $routes = [
     ],
 
     // Liste des sujets de requête
-    'request' => [
+    'subject' => [
         'path' => '/subjects/list',
         'controller' => 'subjects/subject-list.php'
     ],
 
     // Liste des statuts
-    'request' => [
+    'status' => [
         'path' => '/status/list',
         'controller' => 'status/status-list.php'
     ],
