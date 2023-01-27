@@ -21,19 +21,19 @@
   </thead>
   <tbody>
     <?php 
-    foreach ($clientData as $data) {
+    foreach ($clientData as $request) {
     ?>
         <tr class="text-break">
-        <th scope="row"><?= $data["id_request"] ?></th>
-        <td><?= $data["status_id"] ?></td>
-        <td><?= $data["subject_id"] ?></td>
-        <td><?= $data["createdAt"] ?></td>
-        <td><?= $data["lastname"]." ".$data["firstname"] ?></td>
-        <td ><?= $data["content"] ?></td>
-        <td><?= $data["filename"] ?></td>
+        <th scope="row"><?= $request->getIdRequest() ?></th>
+        <td><?= $request->getSubject()->getSubjectLabel() ?></td>
+        <td><?= $request->getStatus()->getStatusLabel() ?></td>
+        <td><?= $request->getCreatedAt() ?></td>
+        <td><?= $request->getFullname() ?></td>
+        <td><?= $request->getContent() ?></td>
+        <td><?= $request->getFilename() ?></td>
         <td>
-            <a href="/requests/edit?id_request=<?= $data['id_request'] ?>"><button><i class="far fa-edit"></i></button></a>
-            <a href="/requests/delete?id_request=<?= $data['id_request'] ?>"><button><i class="fas fa-trash-alt"></i></button></a>
+            <a href="/requests/edit?id_request=<?= $request->getIdRequest() ?>"><button><i class="far fa-edit"></i></button></a>
+            <a href="/requests/delete?id_request=<?= $request->getIdRequest() ?>"><button><i class="fas fa-trash-alt"></i></button></a>
         </td>
 
         </tr>

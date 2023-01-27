@@ -11,19 +11,19 @@ class UserModel extends AbstractModel {
     function getUserByEmail(string $email): array 
     {
         // Préparation de la requête
-        $sql = 'SELECT * FROM user WHERE email = ?';
+        $sql = 'SELECT * FROM users WHERE email = ?';
         $pdoStatement = self::$pdo->prepare($sql);
 
         // Exécution de la requête
         $pdoStatement->execute([$email]);
 
         // Récupération du résultat 
-        $user = $pdoStatement->fetch();
+        $users = $pdoStatement->fetch();
 
-        if (!$user) {
+        if (!$users) {
             return [];
         }
-        return $user;
+        return $users;
     }
 
     /** 
@@ -32,11 +32,11 @@ class UserModel extends AbstractModel {
     function insertUser(string $firstname, string $lastname, string $email, string $password)
     {
         // Hashage du mot de passe
-        $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+        $passwordHash = password_hash($password, PASSWORD_BCRYPT);
 
         // Insertion des données 
-        $sql = 'INSERT INTO user (firstname, lastname, email, password, createdAt)
-                VALUES (?, ?, ?, ?, NOW())';
+        $sql = 'INSERT INTO users (firstname, lastname, email, password)
+                VALUES (?, ?, ?, ?)';
 
         $pdoStatement = self::$pdo->prepare($sql);
         $pdoStatement->execute([$firstname, $lastname, $email, $passwordHash]);

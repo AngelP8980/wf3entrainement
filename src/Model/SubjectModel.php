@@ -4,6 +4,7 @@
 namespace App\Model;
 
 //Import des classes
+use App\Entity\Subject;
 use App\Core\AbstractModel;
 
 class SubjectModel extends AbstractModel {
@@ -39,7 +40,7 @@ class SubjectModel extends AbstractModel {
     function createSubject($id_subject, $subject_label): bool
     {
         // Préparation du sujet
-        $sql = 'INSERT INTO subjects (id_subject, subject_label) VALUES (?,?)';
+        $sql = 'INSERT INTO subject (id_subject, subject_label) VALUES (?,?)';
         $pdoStatement = self::$pdo->prepare($sql);
         
         // Exécution du sujet
@@ -53,11 +54,30 @@ class SubjectModel extends AbstractModel {
      * Supprime un sujet dans la table subject
      */
     function deleteSubject($id_subject) {
-        $sql = 'DELETE FROM subjects WHERE id_subject = ?';
+        $sql = 'DELETE FROM subject WHERE id_subject = ?';
         $pdoStatement = self::$pdo->prepare($sql);
 
         $sqlSubject = $pdoStatement->execute([$id_subject]);
 
         return $sqlSubject;
+    }
+
+    function getOneSubjectById(?int $subject_id): Subject 
+    {
+        // Préparation du sujet
+        $sql = 'SELECT * FROM subject WHERE id_subject = ?';
+        $pdoStatement = self::$pdo->prepare($sql);
+
+        // Exécution du sujet
+        $pdoStatement->execute([$subject_id]);
+
+        // Récupération du résultat 
+        $subjectData = $pdoStatement->fetch();
+        if (!$subjectData) {
+            return [];
+        }
+        $subject = new Subject($subjectData['id_subject'], $subjectData['subject_label']);
+
+        return $subject;
     }
 }

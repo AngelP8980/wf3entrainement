@@ -24,7 +24,7 @@ $routes = [
 
     // Liste des demandes clients
     'request' => [
-        'path' => '/requests/list',
+        'path' => '/requests',
         'controller' => 'requests/request-list.php'
     ],
 
@@ -42,7 +42,7 @@ $routes = [
 
     // Liste des sujets de requête
     'subject' => [
-        'path' => '/subjects/list',
+        'path' => '/subjects',
         'controller' => 'subjects/subject-list.php'
     ],
 
@@ -53,22 +53,22 @@ $routes = [
     ],
 
     // Création de compte
-    // 'signup' => [
-    //     'path' => '/signup',
-    //     'controller' => 'signup.php'
-    // ],
+    'signup' => [
+        'path' => '/signup',
+        'controller' => 'signup.php'
+    ],
 
     // Connexion utilisateur
-    // 'login' => [
-    //     'path' => '/login',
-    //     'controller' => 'login.php'
-    // ],
+    'login' => [
+        'path' => '/login',
+        'controller' => 'login.php'
+    ],
 
-    // // Déconnexion
-    // 'logout' => [
-    //     'path' => '/logout',
-    //     'controller' => 'logout.php'
-    // ],
+    // Déconnexion
+    'logout' => [
+        'path' => '/logout',
+        'controller' => 'logout.php'
+    ],
 ];
 
 return $routes;

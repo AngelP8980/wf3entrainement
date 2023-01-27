@@ -4,7 +4,7 @@ use App\Model\SubjectModel;
 
 $subjectModel = new SubjectModel;
 
-$clientData = $subjectModel->getAllSubjects();
+$subjectData = $subjectModel->getAllSubjects();
 
 
 
@@ -12,5 +12,5 @@ $clientData = $subjectModel->getAllSubjects();
 $flashMessage = fetchFlash();
 
 // Affichage : inclusion du template
-$template = 'subjets/subject-list';
+$template = 'subjects/subject-list';
 include '../templates/base.phtml';

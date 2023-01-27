@@ -4,6 +4,9 @@
 namespace App\Model;
 
 //Import des classes
+use App\Entity\Status;
+use App\Entity\Request;
+use App\Entity\Subject;
 use App\Core\AbstractModel;
 
 class RequestModel extends AbstractModel {
@@ -30,7 +33,48 @@ class RequestModel extends AbstractModel {
             return [];
         }
 
-        return $results;
+        ///////////////////////////////////////////////////////////
+        // Création des objets Request à partir du tableau de résultats
+
+        // Création d'un tableau pour stocker les objets
+        $requests = [];
+
+        $subjectModel = new SubjectModel;
+        $statusModel = new StatusModel;
+
+
+        // On parcourt les résultats, pour chaque requête (tableau associatif)...
+        foreach ($results as $result) {
+
+
+            // ... on instancie les classes Subject et Status
+            $subject = $subjectModel->getOneSubjectById($result['subject_id']);
+            $status = $statusModel->getOneStatusById($result['status_id']);
+
+            
+            // Instanciation de l'objet Request
+            $request = new Request(
+                $result['id_request'],
+                $result['createdAt'],
+                $result['firstname'],
+                $result['lastname'],
+                $result['email'],
+                $result['content'],
+                $result['phone'],
+                $result['filename'],
+                $subject,
+                $status
+            );
+
+
+
+            // On ajoute l'objet Task dans le tableau de tâches
+            $requests[] = $request;
+        }
+
+        // On retourne Le tableau de tâche
+        return $requests;
+
     }
 
     /**

@@ -6,23 +6,43 @@
             Accueil
         </a>
 
-        <a href="/requests/add" class="btn btn-dark mx-1">
-            <i class="fa fa-file-text" aria-hidden="true"></i>
-            Formulaire demande client
-        </a>  
+        <!-- MENU EN MODE CONNECTE -->
+        <?php if (isConnected()): ?>
+            <a href="/requests/add" class="btn btn-primary mx-1">
+                <i class="fa-solid fa-plus"></i>
+                Formulaire demande client
+            </a>
+            <a href="/logout" class="btn btn-primary mx-1">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                Déconnexion
+            </a>
 
-        <a href="/requests/" class="btn btn-dark mx-1">
+            <a href="/requests" class="btn btn-dark mx-1">
             <i class="fa fa-file-text" aria-hidden="true"></i>
             Demandes clients
         </a>    
 
-        <a href="/subjects/" class="btn btn-dark mx-1">
+        <a href="/subjects" class="btn btn-dark mx-1">
             <i class="fa fa-file-text" aria-hidden="true"></i>
             Listes des sujets de requête
         </a>            
         
-        <a href="/status/" class="btn btn-dark mx-1">
+        <a href="/status" class="btn btn-dark mx-1">
             <i class="fa fa-file-text" aria-hidden="true"></i>
             Listes des statuts
-        </a>     
+        </a>  
+
+        <!-- MENU EN MODE NON CONNECTE -->
+        <?php else: ?>
+        <a href="/signup" class="btn btn-primary mx-1">
+            <i class="fa-solid fa-user-plus"></i>
+            Créer un compte
+        </a>
+        <a href="/login" class="btn btn-primary mx-1">
+            <i class="fa-solid fa-right-to-bracket"></i>
+            Connexion
+        </a>
+        <?php endif; ?>
+
+
     </nav>

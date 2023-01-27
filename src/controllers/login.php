@@ -20,7 +20,7 @@ if(!empty($_POST)) {
     else {
 
         // On enregistre les données de l'utilisateur dans la session
-        registerUser($user['id'], $user['email'], $user['firstname'], $user['lastname']);
+        registerUser($user['id_user'], $user['email'], $user['firstname'], $user['lastname']);
     
         // Message flash
         addFlash('Connexion réussie !');

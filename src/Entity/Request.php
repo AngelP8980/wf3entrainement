@@ -12,13 +12,14 @@ class Request {
     private string $content;
     private string $phone;
     private string $filename;
-    private string $subject_id;
-    private string $status_id;
+    private Subject $subject;
+    private Status $status;
+    private string $createdAt;
 
     /**
      * Constructeur
      */
-    public function __construct(?int $id_request, string $firstname, string $lastname, string $email, string $content, string $phone, string $filename, ?int $subject_id, ?int $status_id)
+    public function __construct(?int $id_request, string $createdAt, string $firstname, string $lastname, string $email, string $content, string $phone, string $filename, Subject $subject, Status $status)
     {
         $this->id_request = $id_request;
         $this->firstname = $firstname;
@@ -27,8 +28,9 @@ class Request {
         $this->content = $content;
         $this->phone = $phone;
         $this->filename = $filename;
-        $this->subject_id = $subject_id;
-        $this->status_id = $status_id;
+        $this->subject = $subject;
+        $this->status = $status;
+        $this->createdAt = $createdAt;
     }
 
     /**
@@ -90,6 +92,16 @@ class Request {
 
         return $this;
     }
+
+    /**
+     * Conca.....
+     */ 
+    public function getFullname(): string
+    {
+        return $this->lastname . " " . $this->firstname;
+    }
+
+
 
     /**
      * Get the value of email
@@ -172,43 +184,51 @@ class Request {
     }
 
     /**
-     * Get the value of subject_id
+     * Get the value of subject
      */ 
-    public function getSubjectId(): ?int
+    public function getSubject(): Subject
     {
-        return $this->subject_id;
+        return $this->subject;
     }
 
     /**
-     * Set the value of subject_id
+     * Set the value of subject
      *
      * @return  self
      */ 
-    public function setSubjectId(?int $subject_id): self
+    public function setSubject(Subject $subject): self
     {
-        $this->subject_id = $subject_id;
+        $this->subject = $subject;
 
         return $this;
     }
 
     /**
-     * Get the value of status_id
+     * Get the value of status
      */ 
-    public function getStatusId(): ?int
+    public function getStatus(): Status
     {
-        return $this->status_id;
+        return $this->status;
     }
 
     /**
-     * Set the value of status_id
+     * Set the value of status
      *
      * @return  self
      */ 
-    public function setStatusId(?int $status_id): self
+    public function setStatus(Status $status): self
     {
-        $this->sstatus_id = $status_id;
+        $this->status = $status;
 
         return $this;
+    }
+
+    /**
+     * Get the value of createdAt
+     */ 
+    public function getCreatedAt(): string
+    {
+        return $this->createdAt;
     }
 
 }

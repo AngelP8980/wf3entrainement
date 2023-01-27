@@ -98,7 +98,7 @@ function registerUser(int $userId, string $email, string $firstname, string $las
     initSession();
 
     $_SESSION['user'] = [
-        'id' => $userId,
+        'id_user' => $userId,
         'email' => $email,
         'firstname' => $firstname,
         'lastname' => $lastname

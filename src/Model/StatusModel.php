@@ -4,6 +4,7 @@
 namespace App\Model;
 
 //Import des classes
+use App\Entity\Status;
 use App\Core\AbstractModel;
 
 class StatusModel extends AbstractModel {
@@ -59,5 +60,24 @@ class StatusModel extends AbstractModel {
         $sqlStatus = $pdoStatement->execute([$id_status]);
 
         return $sqlStatus;
+    }
+
+    function getOneStatusById(?int $status_id): Status 
+    {
+        // Préparation du statut
+        $sql = 'SELECT * FROM status WHERE id_status = ?';
+        $pdoStatement = self::$pdo->prepare($sql);
+
+        // Exécution du statut
+        $pdoStatement->execute([$status_id]);
+
+        // Récupération du résultat 
+        $statusData = $pdoStatement->fetch();
+        if (!$statusData) {
+            return [];
+        }
+        $status = new Status($statusData['id_status'], $statusData['status_label']);
+
+        return $status;
     }
 }

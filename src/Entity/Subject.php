@@ -41,7 +41,7 @@ class Subject {
     /**
      * Get the value of subject_label
      */ 
-    public function getSubjetLabel(): string
+    public function getSubjectLabel(): string
     {
         return $this->subject_label;
     }
