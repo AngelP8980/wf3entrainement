@@ -1,0 +1,17 @@
+<!-- Ajouter un sujet de requête -->
+<h2>Ajouter un sujet de requête</h2>
+<form action="" method="POST" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label for="subject">Nouveau sujet</label>
+            <input class="form-control" type="text" name="subject" id="subject" placeholder="Nouveau sujet" maxlength=255 required/>
+        </div>
+        
+    
+        
+
+        <input value="Valider" type="submit" name="submit" class="btn btn-dark"/>
+</form>
+
+<div class="">
+    <?= $flashMessage; ?>
+</div>

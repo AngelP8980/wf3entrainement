@@ -1,0 +1,39 @@
+<!-- Liste des sujets de requête -->
+<div class="text-center pt-3 pb-2">
+    <img src="img/logo.png" alt="Check" width="60">
+    <h2 class="my-4">Liste des sujets de requête</h2>
+
+    <table class="table table-striped bg-white">
+  <thead>
+    <tr>
+      <th scope="col">#id</th>
+      <th scope="col">Label</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php 
+    foreach ($subjectData as $data) {
+    ?>
+        <tr class="text-break">
+        <th scope="row"><?= $data["id_subject"] ?></th>
+        <td><?= $data["label"] ?></td>
+        <td>
+            <a href="/subjects/edit?id_subject=<?= $data['id_subject'] ?>"><button><i class="far fa-edit"></i></button></a>
+            <a href="/subjects/delete?id_subject=<?= $data['id_subject'] ?>"><button><i class="fas fa-trash-alt"></i></button></a>
+        </td>
+
+        </tr>
+    <?php
+    }
+    ?>
+  </tbody>
+</table>
+</div>
+
+
+
+<!-- Affichage du message flash le cas échéant -->
+<?php if ($flashMessage): ?>
+    <div class="alert alert-success text-center pt-3 pb-4"><?=htmlspecialchars($flashMessage);?></div>
+<?php endif; ?>

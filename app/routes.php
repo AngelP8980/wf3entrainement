@@ -1,7 +1,7 @@
 <?php 
 
 /**
- * On définit dans le tableau associatif $routes lal iste de nos routes.
+ * On définit dans le tableau associatif $routes la liste de nos routes.
  * Pour chaque route, on définit : 
  * - son nom 
  * - path (qui apparaît dans l'URL)
@@ -17,9 +17,39 @@ $routes = [
     ],
 
     // Demande client
+    'addRequest' => [
+        'path' => '/requests/add',
+        'controller' => 'requests/request-add.php'
+    ],
+
+    // Liste des demandes clients
     'request' => [
-        'path' => '/request',
-        'controller' => 'request.php'
+        'path' => '/requests/list',
+        'controller' => 'requests/request-list.php'
+    ],
+
+    // Modifie la demande client
+    'editRequest' => [
+        'path' => '/requests/edit',
+        'controller' => 'requests/request-edit.php'
+    ],
+
+    // Supprime la demande client
+    'deleteRequest' => [
+        'path' => '/requests/delete',
+        'controller' => 'requests/request-delete.php'
+    ],
+
+    // Liste des sujets de requête
+    'request' => [
+        'path' => '/subjects/list',
+        'controller' => 'subjects/subject-list.php'
+    ],
+
+    // Liste des statuts
+    'request' => [
+        'path' => '/status/list',
+        'controller' => 'status/status-list.php'
     ],
 
     // Création de compte

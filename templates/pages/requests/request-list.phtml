@@ -1,0 +1,54 @@
+<!-- Liste demandes clients -->
+<div class="text-center pt-3 pb-2">
+    <img src="img/logo.png" alt="Check" width="60">
+    <h2 class="my-4">Liste des requêtes clients</h2>
+
+    <table class="table table-striped bg-white">
+  <thead>
+    <tr>
+      <th scope="col">#id</th>
+      <th scope="col">Statut</th>
+      <th scope="col">Sujet</th>
+      <th scope="col">Date de création</th>
+      <th scope="col">Demandeur</th>
+      <th scope="col">Message</th>
+      <th scope="col">Fichier</th>
+      <th scope="col">Actions</th>
+
+
+
+    </tr>
+  </thead>
+  <tbody>
+    <?php 
+    foreach ($clientData as $data) {
+    ?>
+        <tr class="text-break">
+        <th scope="row"><?= $data["id_request"] ?></th>
+        <td><?= $data["status_id"] ?></td>
+        <td><?= $data["subject_id"] ?></td>
+        <td><?= $data["createdAt"] ?></td>
+        <td><?= $data["lastname"]." ".$data["firstname"] ?></td>
+        <td ><?= $data["content"] ?></td>
+        <td><?= $data["filename"] ?></td>
+        <td>
+            <a href="/requests/edit?id_request=<?= $data['id_request'] ?>"><button><i class="far fa-edit"></i></button></a>
+            <a href="/requests/delete?id_request=<?= $data['id_request'] ?>"><button><i class="fas fa-trash-alt"></i></button></a>
+        </td>
+
+        </tr>
+    <?php
+    }
+    ?>
+
+  </tbody>
+</table>
+
+</div>
+
+
+
+<!-- Affichage du message flash le cas échéant -->
+<?php if ($flashMessage): ?>
+    <div class="alert alert-success text-center pt-3 pb-4"><?=htmlspecialchars($flashMessage);?></div>
+<?php endif; ?>
