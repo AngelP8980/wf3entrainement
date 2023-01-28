@@ -3,34 +3,50 @@
     <img src="img/logo.png" alt="Logo" width="60">
     <h2 class="my-4">Liste des statuts</h2>
 
-    <table class="table table-striped bg-white">
-  <thead>
-    <tr>
-      <th scope="col">#id</th>
-      <th scope="col">Label</th>
-      <th scope="col">Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <?php 
-    foreach ($statusData as $data) {
-    ?>
-        <tr class="text-break">
-        <th scope="row"><?= $data["id_status"] ?></th>
-        <td><?= $data["status_label"] ?></td>
-        <td>
-          <a href="/status/edit?id_status=<?= $data['id_status'] ?>"><button><i class="far fa-edit"></i></button></a>
-          <a href="/status/delete?id_status=<?= $data['id_status'] ?>"><button><i class="fas fa-trash-alt"></i></button></a>
-        </td>
+  <table class="table table-striped bg-white">
+    <thead>
+      <tr>
+        <th scope="col">#id</th>
+        <th scope="col">Label</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php
+      usort($statusData, function($a, $b) {
+        return $a['id_status'] <=> $b['id_status'];
+      }); 
+      foreach ($statusData as $data) {
+      ?>
+          <tr class="text-break">
+          <th scope="row"><?= $data["id_status"] ?></th>
+          <td><?= $data["status_label"] ?></td>
+          <td>
+            <a href="/status/edit?id_status=<?= $data['id_status'] ?>"><button><i class="far fa-edit"></i></button></a>
+            <a href="/status/delete?id_status=<?= $data['id_status'] ?>"><button><i class="fas fa-trash-alt"></i></button></a>
+          </td>
 
-        </tr>
-    <?php
-    }
-    ?>
-  </tbody>
+          </tr>
+      <?php
+      }
+      ?>
+    </tbody>
 </table>
 </div>
 
+<!-- Ajout d'un nouveau statut -->
+<div class="text-left pt-6 pb-2">
+    <h2 class="my-4">Nouveau statut</h2>
+
+    <form action="" method="POST" enctype="multipart/form-data">
+      <div class="mb-6">
+            <label for="label">Label du statut</label>
+            <input class="form-control" type="text" name="label" id="label" placeholder="" maxlength=255 />
+      </div>
+
+      <input value="Valider" type="submit" name="submit" class="btn btn-dark mt-3"/>
+
+    </form>
 
 
 <!-- Affichage du message flash le cas échéant -->

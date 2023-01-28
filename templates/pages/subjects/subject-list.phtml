@@ -3,34 +3,52 @@
     <img src="img/logo.png" alt="Check" width="60">
     <h2 class="my-4">Liste des sujets de requête</h2>
 
-    <table class="table table-striped bg-white">
-  <thead>
-    <tr>
-      <th scope="col">#id</th>
-      <th scope="col">Label</th>
-      <th scope="col">Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <?php 
-    foreach ($subjectData as $data) {
-    ?>
-        <tr class="text-break">
-        <th scope="row"><?= $data["id_subject"] ?></th>
-        <td><?= $data["subject_label"] ?></td>
-        <td>
-            <a href="/subjects/edit?id_subject=<?= $data['id_subject'] ?>"><button><i class="far fa-edit"></i></button></a>
-            <a href="/subjects/delete?id_subject=<?= $data['id_subject'] ?>"><button><i class="fas fa-trash-alt"></i></button></a>
-        </td>
 
-        </tr>
-    <?php
-    }
-    ?>
-  </tbody>
+
+  <table class="table table-striped bg-white">
+    <thead>
+      <tr>
+        <th scope="col">#id</th>
+        <th scope="col">Label</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php 
+      usort($subjectData, function($a, $b) {
+        return $a['id_subject'] <=> $b['id_subject'];
+      });
+      foreach ($subjectData as $data) {
+      ?>
+          <tr class="text-break">
+          <th scope="row"><?= $data["id_subject"] ?></th>
+          <td><?= $data["subject_label"] ?></td>
+          <td>
+              <a href="/subjects/edit?id_subject=<?= $data['id_subject'] ?>"><button><i class="far fa-edit"></i></button></a>
+              <a href="/subjects/delete?id_subject=<?= $data['id_subject'] ?>"><button><i class="fas fa-trash-alt"></i></button></a>
+          </td>
+
+          </tr>
+      <?php
+      }
+      ?>
+    </tbody>
 </table>
 </div>
 
+<!-- Ajout d'un nouveau sujet -->
+<div class="text-left pt-6 pb-2">
+    <h2 class="my-4">Nouveau sujet</h2>
+
+    <form action="" method="POST" enctype="multipart/form-data">
+      <div class="mb-6">
+            <label for="label">Label du sujet</label>
+            <input class="form-control" type="text" name="label" id="label" placeholder="" maxlength=255 />
+      </div>
+
+      <input value="Valider" type="submit" name="submit" class="btn btn-dark mt-3"/>
+
+    </form>
 
 
 <!-- Affichage du message flash le cas échéant -->

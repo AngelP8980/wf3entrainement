@@ -48,7 +48,7 @@ $routes = [
 
     // Liste des statuts
     'status' => [
-        'path' => '/status/list',
+        'path' => '/status',
         'controller' => 'status/status-list.php'
     ],
 

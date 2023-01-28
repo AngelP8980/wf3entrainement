@@ -10,13 +10,13 @@ use App\Core\AbstractModel;
 class StatusModel extends AbstractModel {
 
     /**
-     * Sélectionne l'ensemble des sujets de la table subjects
-     * @return array Le tableau contenant les sujets 
+     * Sélectionne l'ensemble des statuts de la table status
+     * @return array Le tableau contenant les statuts 
      */
     function getAllStatus(): array
     {
         
-        // Préparation du statuts
+        // Préparation du statut
         $sql = 'SELECT * FROM status';
         $pdoStatement = self::$pdo->prepare($sql);
         
@@ -40,7 +40,7 @@ class StatusModel extends AbstractModel {
     function createStatus($id_status, $status_label): bool
     {
         // Préparation du statut
-        $sql = 'INSERT INTO statuts (id_status, status_label) VALUES (?,?)';
+        $sql = 'INSERT INTO status (id_status, status_label) VALUES (?,?)';
         $pdoStatement = self::$pdo->prepare($sql);
         
         // Exécution du statut

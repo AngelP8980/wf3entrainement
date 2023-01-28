@@ -4,7 +4,7 @@ use App\Model\StatusModel;
 
 $statusModel = new StatusModel;
 
-$clientData = $statusModel->getAllStatus();
+$statusData = $statusModel->getAllStatus();
 
 
 

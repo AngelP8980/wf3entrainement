@@ -3,6 +3,8 @@
     <img src="img/logo.png" alt="Check" width="60">
     <h2 class="my-4">Liste des requêtes clients</h2>
 
+    <a href="/requests/edit?id_request=<?= $request['id_request'] ?>"><button><i class="fa-solid fa-plus"></i>Nouvelle demande client</button></a>
+
     <table class="table table-striped bg-white">
   <thead>
     <tr>
@@ -32,8 +34,11 @@
         <td><?= $request->getContent() ?></td>
         <td><?= $request->getFilename() ?></td>
         <td>
-            <a href="/requests/edit?id_request=<?= $request->getIdRequest() ?>"><button><i class="far fa-edit"></i></button></a>
-            <a href="/requests/delete?id_request=<?= $request->getIdRequest() ?>"><button><i class="fas fa-trash-alt"></i></button></a>
+            
+          <?php if (isConnected()): ?>
+              <a href="/requests/edit?id_request=<?= $request->getIdRequest() ?>"><button><i class="far fa-edit"></i></button></a>
+              <a href="/requests/delete?id_request=<?= $request->getIdRequest() ?>"><button><i class="fas fa-trash-alt"></i></button></a>
+          <?php endif; ?>
         </td>
 
         </tr>

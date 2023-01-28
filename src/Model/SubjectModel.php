@@ -35,7 +35,7 @@ class SubjectModel extends AbstractModel {
     }
 
     /**
-     * Crée un sujet dans la table subjects
+     * Crée un sujet dans la table subject
      */
     function createSubject($id_subject, $subject_label): bool
     {

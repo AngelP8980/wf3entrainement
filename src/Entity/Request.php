@@ -94,7 +94,7 @@ class Request {
     }
 
     /**
-     * Conca.....
+     * Concaténation lastname + firstname
      */ 
     public function getFullname(): string
     {
