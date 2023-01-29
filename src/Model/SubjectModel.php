@@ -80,4 +80,14 @@ class SubjectModel extends AbstractModel {
 
         return $subject;
     }
+
+    function updateSubject($id_subject) {
+        $sql = 'UPDATE subject SET id_subject = ? WHERE id_label = ?';
+        $pdoStatement = self::$pdo->prepare($sql);
+
+        $sqlSubject = $pdoStatement->execute([$id_subject]);
+
+        return $sqlSubject;
+    }
+
 }

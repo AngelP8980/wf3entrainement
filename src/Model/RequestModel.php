@@ -39,6 +39,7 @@ class RequestModel extends AbstractModel {
         // Création d'un tableau pour stocker les objets
         $requests = [];
 
+        // Instanciation des modèles
         $subjectModel = new SubjectModel;
         $statusModel = new StatusModel;
 
@@ -68,11 +69,11 @@ class RequestModel extends AbstractModel {
 
 
 
-            // On ajoute l'objet Task dans le tableau de tâches
+            // On ajoute l'objet Request dans le tableau de requêtes
             $requests[] = $request;
         }
 
-        // On retourne Le tableau de tâche
+        // On retourne Le tableau de requêtes
         return $requests;
 
     }
@@ -101,6 +102,54 @@ class RequestModel extends AbstractModel {
         $pdoStatement = self::$pdo->prepare($sql);
 
         $sqlStatus = $pdoStatement->execute([$id_request]);
+
+        return $sqlStatus;
+    }
+
+    function getOneRequestById(?int $id_request): Request 
+    {
+        // Préparation de la requête
+        $sql = 'SELECT * FROM request WHERE id_request = ?';
+        $pdoStatement = self::$pdo->prepare($sql);
+
+        // Exécution dde la requête
+        $pdoStatement->execute([$id_request]);
+
+        // Récupération du résultat 
+        $requestData = $pdoStatement->fetch();
+        if (!$requestData) {
+            return [];
+        }
+        
+        $subjectModel = new SubjectModel;
+        $statusModel = new StatusModel;
+
+        $subject = $subjectModel->getOneSubjectById($requestData['subject_id']);
+        $status = $statusModel->getOneStatusById($requestData['status_id']);
+
+        
+        // Instanciation de l'objet Request
+        $request = new Request(
+            $requestData['id_request'],
+            $requestData['createdAt'],
+            $requestData['firstname'],
+            $requestData['lastname'],
+            $requestData['email'],
+            $requestData['content'],
+            $requestData['phone'],
+            $requestData['filename'],
+            $subject,
+            $status
+        );
+
+        return $request;
+    }
+
+    function updateRequest($id_request, $status_id) {
+        $sql = 'UPDATE request SET status_id = ? WHERE id_request = ?';
+        $pdoStatement = self::$pdo->prepare($sql);
+
+        $sqlStatus = $pdoStatement->execute([$status_id, $id_request]);
 
         return $sqlStatus;
     }

@@ -1,4 +1,5 @@
-<!-- Edition demande client -->
+<!-- Modification statut demande client -->
+
 <h2>Requête du <?= $request->getCreatedAt() ?> de <?= $request->getFullname() ?></h2>
 
 <p>Email : <?= $request->getEmail() ?></p>
@@ -7,15 +8,27 @@
 <p>Message</p>
 <p><?= $request->getContent() ?></p>
 <p>Fichier joint : <?= $request->getFilename() ?></p>
+<form action="" method="POST">
+    <label for="demand status">Statut : </label>
 
-<p>Statut</p>
-<label for="demand subject"></label>
-    <select name="subject_id" id="select">
+        <select name="status_id" id="select">
+        <?php
+        foreach ($allStatus as $status) { 
+        ?>
+            <option <?=($status->getIdStatus()==$request->getStatus()->getIdStatus()) ? "selected" : "" ?> value="<?= $status->getIdStatus();?>">
+                <?= $status->getStatusLabel();?>
+            </option>
+            
+
+        <?php
+        }
+        ?>
+        </select>
 
 
 
-        <input value="Valider" type="submit" name="submit" class="btn btn-dark"/>
-
+            <input value="Valider" type="submit" name="submit" class="btn btn-dark"/>
+</form>
 
 <div class="">
     <?= $flashMessage; ?>

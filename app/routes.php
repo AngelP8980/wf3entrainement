@@ -16,6 +16,7 @@ $routes = [
         'controller' => 'home.php'
     ],
 
+
     // Demande client
     'addRequest' => [
         'path' => '/requests/add',
@@ -40,17 +41,32 @@ $routes = [
         'controller' => 'requests/request-delete.php'
     ],
 
+
     // Liste des sujets de requête
     'subject' => [
         'path' => '/subjects',
         'controller' => 'subjects/subject-list.php'
     ],
 
+    // Modifier un sujet
+    'editSubject' => [
+        'path' => '/subjects',
+        'controller' => 'subjects/subject-edit.php'
+    ],
+
+
     // Liste des statuts
     'status' => [
         'path' => '/status',
         'controller' => 'status/status-list.php'
     ],
+
+    // Modifier un statut
+    'editStatus' => [
+        'path' => '/status',
+        'controller' => 'status/status-edit.php'
+    ],
+
 
     // Création de compte
     'signup' => [

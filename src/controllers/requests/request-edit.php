@@ -1,39 +1,34 @@
 <?php 
 
+use App\Model\StatusModel;
 use App\Model\RequestModel;
+
+$requestModel = new RequestModel;
+$statusModel = new StatusModel;
 
 if (isset ($_POST['submit'])) {
     var_dump($_POST);
-    // Si validateString renvoie une string : l'ajoute en message
-    addFlash(validateString('nom', 'lastname',0,255));
-    addFlash(validateString('prénom', 'firstname',0,255));
-    addFlash(validateString('email', 'email',0,255));
-    addFlash(validatePhone('téléphone', 'phone',0,255));
-    addFlash(validateString('message', 'content',100,1000));
-    // TODO rajoute valide INT et tester subject_id
 
-    if (!hasFlash()) {
-        var_dump($_FILES);
-        $lastname = trim($_POST['lastname']);
-        $firstname = trim($_POST['firstname']);
-        $email = trim($_POST['email']);
-        $content = trim($_POST['content']);
-        $phone = $_POST['phone'] ? trim($_POST['phone']): null;
-        $filename = isset($_FILES['document']) ? $_FILES['document']['name']: null;
-        $subject_id = intVal($_POST['subject_id']); 
-        $requestModel = new RequestModel;
-        $sqlStatus = $requestModel-editRequest($sqlStatus);
-        if (!$sqlStatus) {
-            addFlash("Le statut de la requête a bien été modifié.");
-        } else {
-        
-            // Redirection 
-            header('Location: /');
-            exit;
-        }
+    // TODO rajouter valide INT et tester status_id
+
+   $status_id = intVal($_POST['status_id']); 
+
+    $sqlStatus = $requestModel->updateRequest($_GET['id_request'], $status_id);
+    if ($sqlStatus) {
+        addFlash("Le statut de la requête a bien été modifié.");
+        // Redirection 
+        header('Location: /');
+        exit;
+    } else {
+        addFlash("Le statut de la requête n'a pas pu être modifié.");
+
     }
+    
 }
 
+$allStatus = $statusModel->getAllStatus();
+
+$request = $requestModel->getOneRequestById($_GET['id_request']);
 
 // Flash messages
 $flashMessage = fetchFlash();

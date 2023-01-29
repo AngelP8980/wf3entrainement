@@ -3,14 +3,17 @@
     <img src="img/logo.png" alt="Check" width="60">
     <h2 class="my-4">Liste des requêtes clients</h2>
 
-    <a href="/requests/edit?id_request=<?= $request['id_request'] ?>"><button><i class="fa-solid fa-plus"></i>Nouvelle demande client</button></a>
+    <a href="/requests/add" class="btn btn-dark mx-1 mb-2">
+      <i class="fa-solid fa-plus"></i>
+      Formulaire demande client
+    </a>
 
     <table class="table table-striped bg-white">
   <thead>
     <tr>
       <th scope="col">#id</th>
-      <th scope="col">Statut</th>
       <th scope="col">Sujet</th>
+      <th scope="col">Statut</th>
       <th scope="col">Date de création</th>
       <th scope="col">Demandeur</th>
       <th scope="col">Message</th>

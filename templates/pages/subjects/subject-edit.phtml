@@ -1,0 +1,11 @@
+<!-- Modification d'un sujet -->
+
+<h2>Modifier un sujet</h2>
+
+<p>Label du sujet : <?= $request->getSubject()->getSubjectLabel() ?></p>
+
+<input value="Valider" type="submit" name="submit" class="btn btn-dark"/>
+
+<div class="">
+    <?= $flashMessage; ?>
+</div>

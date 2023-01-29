@@ -1,6 +1,6 @@
 
 
-    <nav>
+    <nav class="text-center">
         <a href="/" class="btn btn-dark mx-1 mb-2 mt-2">
             <i class="fa-solid fa-home"></i>
             Accueil
@@ -8,18 +8,19 @@
 
         <!-- MENU EN MODE CONNECTE -->
         <?php if (isConnected()): ?>
-            <a href="/requests/add" class="btn btn-primary mx-1">
+            <a href="/requests/add" class="btn btn-dark mx-1">
                 <i class="fa-solid fa-plus"></i>
                 Formulaire demande client
             </a>
-            <a href="/logout" class="btn btn-primary mx-1">
+            <a href="/logout" class="btn btn-dark mx-1">
                 <i class="fa-solid fa-right-from-bracket"></i>
                 Déconnexion
             </a>
+            <br>
 
             <a href="/requests" class="btn btn-dark mx-1">
-            <i class="fa fa-file-text" aria-hidden="true"></i>
-            Demandes clients
+                <i class="fa fa-file-text" aria-hidden="true"></i>
+                Demandes clients
         </a>    
 
         <a href="/subjects" class="btn btn-dark mx-1">
@@ -34,11 +35,11 @@
 
         <!-- MENU EN MODE NON CONNECTE -->
         <?php else: ?>
-        <a href="/signup" class="btn btn-primary mx-1">
+        <a href="/signup" class="btn btn-dark mx-1">
             <i class="fa-solid fa-user-plus"></i>
             Créer un compte
         </a>
-        <a href="/login" class="btn btn-primary mx-1">
+        <a href="/login" class="btn btn-dark mx-1">
             <i class="fa-solid fa-right-to-bracket"></i>
             Connexion
         </a>

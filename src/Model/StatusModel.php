@@ -17,7 +17,7 @@ class StatusModel extends AbstractModel {
     {
         
         // Préparation du statut
-        $sql = 'SELECT * FROM status';
+        $sql = 'SELECT * FROM status ORDER BY id_status';
         $pdoStatement = self::$pdo->prepare($sql);
         
         // Exécution du statut
@@ -31,7 +31,25 @@ class StatusModel extends AbstractModel {
             return [];
         }
 
-        return $results;
+        // Création d'un tableau pour stocker les objets
+        $allStatus = [];
+
+        // On parcourt les résultats, pour chaque statuts (tableau associatif)...
+        foreach ($results as $result) {
+
+          
+            // Instanciation de l'objet Status
+            $status = new Status(
+                $result['id_status'],
+                $result['status_label'],
+            );
+
+
+            // On ajoute l'objet Status dans le tableau de statuts
+            $allStatus[] = $status;
+        }
+
+        return $allStatus;
     }
 
     /**
